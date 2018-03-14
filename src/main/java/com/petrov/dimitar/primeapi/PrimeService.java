@@ -11,7 +11,7 @@ public class PrimeService {
 
     public Primes getPrimesBruteForce(int max) {
         List<Integer> primes = new ArrayList<>();
-        if (max > 2) {
+        if (max >= 2) {
             primes.add(2);
         }
 
@@ -25,20 +25,20 @@ public class PrimeService {
     }
 
     public Primes getPrimesSieveOfEratosthenes(int max) {
-        boolean prime[] = new boolean[max + 1];
-        Arrays.fill(prime, true);
+        boolean primeArray[] = new boolean[max + 1];
+        Arrays.fill(primeArray, true);
 
-        for (int p = 2; p * p <= max; p++) {
-            if (prime[p]) {
+        for (int p = 2; p <= Math.sqrt(max); p++) {
+            if (primeArray[p]) {
                 for (int i = p * 2; i <= max; i += p) {
-                    prime[i] = false;
+                    primeArray[i] = false;
                 }
             }
         }
 
         List<Integer> primeNumbers = new ArrayList<>();
         for (int i = 2; i <= max; i++) {
-            if (prime[i]) {
+            if (primeArray[i]) {
                 primeNumbers.add(i);
             }
         }
@@ -47,7 +47,7 @@ public class PrimeService {
     }
 
     private boolean isPrimeBF(int n) {
-        for (int i = 2; i < Math.sqrt(n); i++) {
+        for (int i = 2; i <= Math.sqrt(n); i++) {
             if (n % i == 0) {
                 return false;
             }

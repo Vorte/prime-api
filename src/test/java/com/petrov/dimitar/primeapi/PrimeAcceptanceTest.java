@@ -50,4 +50,11 @@ public class PrimeAcceptanceTest {
 
         assertThat(entity.getStatusCode(), equalTo(HttpStatus.BAD_REQUEST));
     }
+
+    @Test
+    public void getPrimes_invalidMaxValue_badRequest() {
+        ResponseEntity<Primes> entity = restTemplate.getForEntity("/primes/a1", Primes.class);
+
+        assertThat(entity.getStatusCode(), equalTo(HttpStatus.BAD_REQUEST));
+    }
 }
